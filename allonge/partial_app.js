@@ -106,10 +106,44 @@ const once = (fn) => {
 //     //=> undefined
 
 
-const firstAndButFirst = (first, ...butFirst) =>
-  [first, butFirst];
+// const firstAndButFirst = (first, ...butFirst) =>
+//   [first, butFirst];
 
 
 
-const a = firstAndButFirst(1,2,4,5,6,7,8)
-const b =''
+// const a = firstAndButFirst(1,2,4,5,6,7,8)
+// const b =''
+
+// const leftVariadic = (fn) => {
+//     if (fn.length < 1) {
+//         return fn;
+//     }
+//     else {
+//         return function (...args) {
+//             const gathered = args.slice(0, args.length - fn.length + 1),
+//                 spread = args.slice(args.length - fn.length + 1);
+
+//             return fn.apply(
+//                 this, [gathered].concat(spread)
+//             );
+//         }
+//     }
+// };
+
+// const butLastAndLast = leftVariadic((butLast, last) => [butLast, last]);
+
+// const a = butLastAndLast('why', 'hello', 'there', 'little', 'droid')
+
+// const compose = (a, ...rest) =>
+//     rest.length === 0
+//         ? a
+//         : (c) => a(compose(...rest)(c))
+
+
+// const compose = (...fns) =>
+//     (value) =>
+//         fns.reverse().reduce((acc, fn) => fn(acc), value);
+
+const pipeline = (...fns) =>
+  (value) =>
+    fns.reduce((acc, fn) => fn(acc), value);
