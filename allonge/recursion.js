@@ -101,6 +101,11 @@ const callLast = (fn, ...args) =>
     (...remainingArgs) =>
       fn(...remainingArgs, ...args);
 
-const factorial = callLast(factorialWithDelayedWork, 1);
+const factorialX = callLast(factorialWithDelayedWork, 1);
+
+const factorial = (n, work = 1) =>
+  n === 1
+  ? work
+  : factorial(n - 1, n * work);
 
 console.log('ddddddddddd')
