@@ -17,6 +17,15 @@ function* filterWith(fn, iterable) {
     }
 }
 
+function* find(fn, iterable) {
+  for (const element of iterable) {
+      if (!!fn(element)) {
+        yield element;
+        break;
+      }
+  }
+}
+
 function* compact(iterable) {
     for (const element of iterable) {
         if (element != null) yield element;
